@@ -19,4 +19,4 @@ This means the latest Firefox or Chrome.
 
 Firefox does not currently support arbitrary width/height for the video stream and will default to 4:3. If you want to change this, go to `about:config`, search for 'media' and look for the width and height values to adjust it to 16:9 - no guarantees on it looking pretty (it'll look very stretched out and weird). On the other hand, Firefox does support both the option to select either a front-facing or back-facing camera.
 
-Chrome on the other hand supports arbitrary width/height for the video stream but on Android it does not currently support the back-facing camera - only the front-facing one.
+Chrome supports arbitrary width/height for the video stream but on Android it does not currently support the back-facing camera - only the front-facing one.

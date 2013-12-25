@@ -29,13 +29,13 @@ Chrome supports arbitrary width/height for the video stream but on Android it do
 
 Streamed data writes to a JPG and saves to IndexedDB in the following format:
 
-  [
-    {
-      frame: data:image/jpg;base64,<base64 data>,
-      geo: <lat, lon>,
-      description: <optional description>,
-      created: <current unix timestamp>
-    }
-  ]
+    [
+      {
+        frame: data:image/jpg;base64,<base64 data>,
+        geo: <lat, lon>,
+        description: <optional description>,
+        created: <current unix timestamp>
+      }
+    ]
 
 Each object represents a sequential frame in the timeline, first being oldest.

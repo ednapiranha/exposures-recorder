@@ -7,6 +7,7 @@ define(['jquery', 'asyncStorage'],
     var interval = 5.0; // In seconds
     var canvas = document.createElement('canvas');
     var previews = $('.previews');
+    var text = $('.text');
 
     this.video;
     this.hasGeo = false;
@@ -69,6 +70,7 @@ define(['jquery', 'asyncStorage'],
 
         self.videoFrames.id = created;
         asyncStorage.setItem('frames[' + self.videoFrames.id + ']', self.videoFrames);
+        text.text('Record');
         callback(true);
       }
     };
@@ -83,6 +85,7 @@ define(['jquery', 'asyncStorage'],
       if (this.video) {
         canvas.width = this.video.width;
         canvas.height = this.video.height;
+        text.text('Recording...');
         captureFrame(pendingFrames, callback);
       }
     };

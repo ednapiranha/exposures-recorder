@@ -97,7 +97,6 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
     recorder.getScreenshot(function () {
       console.log('posting done');
     }, 100, recorder.interval);
-    alert('recording!');
   });
 });
 

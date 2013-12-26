@@ -4,7 +4,7 @@ define(['jquery', 'asyncStorage'],
 
   var Recorder = function () {
     // This is where we change the time lapse count
-    var interval = 0.5; // In seconds
+    var interval = 5.0; // In seconds
     var canvas = document.createElement('canvas');
     var previews = $('.previews');
     var text = $('.text');

@@ -110,8 +110,9 @@ video {
 
 .previews {
     text-align: center;
+    width: 320px;
 }
 
 .previews img {
-    width: 50px;
+    width: 53px;
 }

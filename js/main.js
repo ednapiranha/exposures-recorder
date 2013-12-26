@@ -91,6 +91,8 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
   $('#record').click(function (ev) {
     ev.preventDefault();
 
+    previewEl.empty();
+
     recorder.video = streamer.video;
     recorder.getScreenshot(function () {
       console.log('posting done');

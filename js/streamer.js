@@ -40,7 +40,6 @@
         self.videoElement.play();
         callback(null, stream);
       }, function (err) {
-        console.log('00')
         callback(err);
       });
     }

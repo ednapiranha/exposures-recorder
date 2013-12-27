@@ -91,11 +91,14 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
   $('#record').click(function (ev) {
     ev.preventDefault();
 
+    var self = $(this);
+
     previewEl.empty();
 
+    self.addClass('on');
     recorder.video = streamer.video;
     recorder.getScreenshot(function () {
-      console.log('posting done');
+      self.removeClass('on');
     }, 100, recorder.interval);
   });
 });

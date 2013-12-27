@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v2013-12-27-03
+# v2013-12-27-04
 
 CACHE:
 /js/asyncStorage.js
@@ -7,7 +7,7 @@ CACHE:
 /js/main.js
 /js/recorder.js
 /js/require.js
-/js/streamers.js
+/js/streamer.js
 /fonts/DroidSansMono-webfont.woff
 /css/main.css
 index.html

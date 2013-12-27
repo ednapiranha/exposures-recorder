@@ -1,0 +1,16 @@
+CACHE MANIFEST
+# v2013-12-27-01
+
+CACHE:
+/js/asyncStorage.js
+/js/jquery.js
+/js/main.js
+/js/recorder.js
+/js/require.js
+/js/streamers.js
+/fonts/DroidSansMono-webfont.woff
+/css/main.css
+
+# catch-all for anything else
+NETWORK:
+*

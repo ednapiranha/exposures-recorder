@@ -95,8 +95,19 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
   $('.uploader').click(function (ev) {
     ev.preventDefault();
 
-    $.post(local.url + '/add/post', { api: local.apiKey }, function (data) {
-      console.log('***** ', data);
+    asyncStorage.getItem('frameList', function (frames) {
+      frames.forEach(function (f) {
+        asyncStorage.getItem('frames[' + f + ']', function (err, data) {
+          if (!err) {
+            $.post(local.url + '/add/post', { api: local.apiKey, frames: data }, function (d) {
+              console.log('uploaded. ', d);
+              asyncStorage.removeItem('frames[' + f + ']');
+            });
+          }
+        });
+      });
+
+      asyncStorage.removeItem('frameList');
     });
   });
 });

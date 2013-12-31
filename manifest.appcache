@@ -11,6 +11,7 @@ CACHE:
 /js/local.js
 /fonts/DroidSansMono-webfont.woff
 /css/main.css
+index.html
 
 # catch-all for anything else
 NETWORK:

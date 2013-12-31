@@ -1,5 +1,5 @@
-define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
-  function ($, asyncStorage, Recorder, Streamer) {
+define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
+  function ($, asyncStorage, Recorder, Streamer, local) {
   'use strict';
 
   // This is where we change the time lapse count
@@ -10,6 +10,7 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
 
   var preview = $('#video-preview');
   var previewEl = $('.previews');
+  var debug = $('.debugger');
 
   var media = [];
 
@@ -46,19 +47,9 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
 
     if (pendingFrames > 0) {
       setTimeout(function () {
-        if (recorder.hasGeo) {
-          navigator.geolocation.getCurrentPosition(function (pos) {
-            recorder.lat = pos.coords.latitude;
-            recorder.lon = pos.coords.longitude;
-            saveFrame(img, function () {
-              captureFrame(pendingFrames, callback);
-            });
-          });
-        } else {
-          saveFrame(img, function () {
-            captureFrame(pendingFrames, callback);
-          });
-        }
+        saveFrame(img, function () {
+          captureFrame(pendingFrames, callback);
+        });
       }, interval * 1000); // timeouts are in milliseconds
     } else {
       var created = Date.now();
@@ -90,16 +81,23 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer'],
 
   $('#record').click(function (ev) {
     ev.preventDefault();
-
     var self = $(this);
 
     previewEl.empty();
-
     self.addClass('on');
+    debug.append('<p>start recording</p>');
     recorder.video = streamer.video;
     recorder.getScreenshot(function () {
       self.removeClass('on');
     }, 100, recorder.interval);
+  });
+
+  $('.uploader').click(function (ev) {
+    ev.preventDefault();
+
+    $.post(local.url + '/add/post', { api: local.apiKey }, function (data) {
+      console.log('***** ', data);
+    });
   });
 });
 

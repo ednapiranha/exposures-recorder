@@ -80,7 +80,7 @@ a {
     100% { opacity: 1.0; }
 }
 
-#record {
+.video-actions {
     background-color: #000;
     cursor: pointer;
     display: inline-block;
@@ -89,7 +89,7 @@ a {
     width: 300px;
 }
 
-#record span.text {
+.video-actions span.text {
     color: #ccc;
     display: inline-block;
     float: left;
@@ -110,11 +110,11 @@ a {
     width: 25px;
 }
 
-#record:hover, #record.on {
+.video-actions:hover, #record.on {
     background-color: #15b894;
 }
 
-#record:hover span.text {
+.video-actions:hover span.text {
     color: #0a3229;
 }
 
@@ -143,11 +143,14 @@ video {
     background-color: #000;
 }
 
-.previews {
-    text-align: center;
-    width: 320px;
+.debugger {
+    color: #15b894;
+    font-family: 'DroidSansMono';
+    font-size: 0.55rem;
+    padding: 5px;
 }
 
-.previews img {
-    width: 53px;
+.debugger p {
+    line-height: 0.7rem;
+    margin-bottom: 2px;
 }

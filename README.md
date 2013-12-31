@@ -25,6 +25,12 @@ Firefox does not currently support arbitrary width/height for the video stream a
 
 Chrome supports arbitrary width/height for the video stream but on Android it does not currently support the back-facing camera - only the front-facing one.
 
+## Settings configuration
+
+    cp js/local.js-dist js/local.js
+
+Change the URL and apiKey accordingly.
+
 ## Data format
 
 Streamed data writes to a JPG and saves to IndexedDB in the following format:

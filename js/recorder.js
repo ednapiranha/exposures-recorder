@@ -4,10 +4,11 @@ define(['jquery', 'asyncStorage'],
 
   var Recorder = function () {
     // This is where we change the time lapse count
-    var interval = 5.0; // In seconds
+    var interval = 1.0; // In seconds
     var canvas = document.createElement('canvas');
     var previews = $('.previews');
-    var text = $('.text');
+    var text = $('#record .text');
+    var debug = $('.debugger');
 
     this.video;
     this.hasGeo = false;
@@ -28,8 +29,6 @@ define(['jquery', 'asyncStorage'],
         created: Math.round(new Date().getTime() / 1000)
       });
 
-      previews.append(img);
-
       callback();
     };
 
@@ -47,6 +46,7 @@ define(['jquery', 'asyncStorage'],
             navigator.geolocation.getCurrentPosition(function (pos) {
               self.lat = pos.coords.latitude;
               self.lon = pos.coords.longitude;
+              debug.append('<p>capturing frame ' + pendingFrames + ' at ' + self.lat + ',' + self.lon + '</p>');
               saveFrame(img, function () {
                 captureFrame(pendingFrames, callback);
               });
@@ -71,6 +71,7 @@ define(['jquery', 'asyncStorage'],
         self.videoFrames.id = created;
         asyncStorage.setItem('frames[' + self.videoFrames.id + ']', self.videoFrames);
         text.text('Record');
+        debug.append('<p>saved frames to local cache</p>');
         callback(true);
       }
     };
@@ -78,9 +79,11 @@ define(['jquery', 'asyncStorage'],
     this.getScreenshot = function (callback) {
       var pendingFrames = 49;
 
-      if (navigator.geolocation) {
-        this.hasGeo = true;
-      };
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        self.hasGeo = true;
+        self.lat = pos.coords.latitude;
+        self.lon = pos.coords.longitude;
+      });
 
       if (this.video) {
         canvas.width = this.video.width;

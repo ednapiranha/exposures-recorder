@@ -101,10 +101,19 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
       console.log(frames)
       frames.forEach(function (f) {
         asyncStorage.getItem('frames[' + f + ']', function (data) {
-          $.post(local.url + '/api/add/post', { api: local.apiKey, frames: data }, function (d) {
-            console.log('uploaded: ', d);
-            asyncStorage.removeItem('frames[' + f + ']');
-            isDeleted = true;
+          $.ajax({
+            url: local.url + '/api/add/post',
+            crossDomain: true,
+            data: { api: local.apiKey, frames: data },
+            dataType: 'json',
+            success: function (d) {
+              console.log('uploaded: ', d);
+              asyncStorage.removeItem('frames[' + f + ']');
+              isDeleted = true;
+            },
+            error: function (xhr, status, error) {
+              console.log(status);
+            }
           });
         });
       });

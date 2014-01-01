@@ -99,7 +99,7 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
       console.log(frames)
       frames.forEach(function (f) {
         asyncStorage.getItem('frames[' + f + ']', function (data) {
-          $.post(local.url + '/add/post', { api: local.apiKey, frames: data }, function (d) {
+          $.post(local.url + '/api/add/post', { api: local.apiKey, frames: data }, function (d) {
             console.log('uploaded: ', d);
             asyncStorage.removeItem('frames[' + f + ']');
           });

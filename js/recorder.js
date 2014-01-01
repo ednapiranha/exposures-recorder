@@ -52,6 +52,7 @@ define(['jquery', 'asyncStorage'],
               });
             });
           } else {
+            debug.append('<p>capturing frame ' + pendingFrames + ' at ' + self.lat + ',' + self.lon + '</p>');
             saveFrame(img, function () {
               captureFrame(pendingFrames, callback);
             });
@@ -78,7 +79,6 @@ define(['jquery', 'asyncStorage'],
 
     this.getScreenshot = function (callback) {
       var pendingFrames = 49;
-
       navigator.geolocation.getCurrentPosition(function (pos) {
         self.hasGeo = true;
         self.lat = pos.coords.latitude;

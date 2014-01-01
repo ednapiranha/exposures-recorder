@@ -3,7 +3,7 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
   'use strict';
 
   // This is where we change the time lapse count
-  var interval = 5.0; // In seconds
+  var interval = 0.2; // In seconds
   var canvas = document.createElement('canvas');
   var streamer = new Streamer();
   var recorder = new Recorder();
@@ -96,14 +96,13 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
     ev.preventDefault();
 
     asyncStorage.getItem('frameList', function (frames) {
+      console.log(frames)
       frames.forEach(function (f) {
-        asyncStorage.getItem('frames[' + f + ']', function (err, data) {
-          if (!err) {
-            $.post(local.url + '/add/post', { api: local.apiKey, frames: data }, function (d) {
-              console.log('uploaded. ', d);
-              asyncStorage.removeItem('frames[' + f + ']');
-            });
-          }
+        asyncStorage.getItem('frames[' + f + ']', function (data) {
+          $.post(local.url + '/add/post', { api: local.apiKey, frames: data }, function (d) {
+            console.log('uploaded: ', d);
+            asyncStorage.removeItem('frames[' + f + ']');
+          });
         });
       });
 

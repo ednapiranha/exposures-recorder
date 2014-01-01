@@ -95,6 +95,8 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
   $('.uploader').click(function (ev) {
     ev.preventDefault();
 
+    var isDeleted = false;
+
     asyncStorage.getItem('frameList', function (frames) {
       console.log(frames)
       frames.forEach(function (f) {
@@ -102,11 +104,14 @@ define(['jquery', 'asyncStorage', 'recorder', 'streamer', 'local'],
           $.post(local.url + '/api/add/post', { api: local.apiKey, frames: data }, function (d) {
             console.log('uploaded: ', d);
             asyncStorage.removeItem('frames[' + f + ']');
+            isDeleted = true;
           });
         });
       });
 
-      asyncStorage.removeItem('frameList');
+      if (isDeleted) {
+        asyncStorage.removeItem('frameList');
+      }
     });
   });
 });
